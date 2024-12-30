@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/spdx-tools-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/spdx-tools-{{ version }}.tar.gz
   sha256: 68b8f9ce2893b5216bd90b2e63f1c821c2884e4ebc4fd295ebbf1fa8b8a94b93
 
 build:
@@ -15,16 +15,16 @@ build:
     - pyspdxtools3 = spdx_tools.spdx3.clitools.pyspdxtools3:main
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
 
 requirements:
   host:
-    - python >=3.7
+    - python {{ python_min }}
     - setuptools >=61.2
     - setuptools-scm >=3.4.3
     - pip
   run:
-    - python >=3.7
+    - python >={{ python_min }}
     - click
     - pyyaml
     - xmltodict
@@ -44,6 +44,7 @@ test:
     - pyspdxtools3 --help
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/spdx/tools-python
