@@ -1,13 +1,13 @@
 {% set name = "spdx-tools" %}
-{% set version = "0.8.3" %}
+{% set version = "0.8.5" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/spdx-tools-{{ version }}.tar.gz
-  sha256: 68b8f9ce2893b5216bd90b2e63f1c821c2884e4ebc4fd295ebbf1fa8b8a94b93
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name | replace('-', '_') }}-{{ version }}.tar.gz
+  sha256: be600beb2f762f0116025e05490d399e724f668bef84025a7c421bb266688bdb
 
 build:
   entry_points:
@@ -15,7 +15,7 @@ build:
     - pyspdxtools3 = spdx_tools.spdx3.clitools.pyspdxtools3:main
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 1
+  number: 0
 
 requirements:
   host:
